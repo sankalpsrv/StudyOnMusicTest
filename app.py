@@ -138,13 +138,13 @@ def close():
         score_user += 1
     if part1_answers_list[2] == 'A':
         score_user += 1
-    if part1_answers_list[3] == 'B':
+    if part1_answers_list[3] == 'A':
         score_user += 1
-    if part1_answers_list[4] == 'C':
+    if part1_answers_list[4] == 'B':
         score_user += 1
     if part1_answers_list[5] == 'B':
         score_user += 1
-    if part1_answers_list[6] == 'C':
+    if part1_answers_list[6] == 'A':
         score_user += 1
     if part1_answers_list[7] == 'B':
         score_user += 1
@@ -157,15 +157,15 @@ def close():
         score_user += 1
     if part2_answers_list[1] == 'A':
         score_user += 1
-    if part2_answers_list[2] == 'A':
+    if part2_answers_list[2] == 'B':
         score_user += 1
-    if part2_answers_list[3] == 'B':
+    if part2_answers_list[3] == 'C':
         score_user += 1
-    if part2_answers_list[4] == 'C':
+    if part2_answers_list[4] == 'A':
         score_user += 1
-    if part2_answers_list[5] == 'A':
+    if part2_answers_list[5] == 'B':
         score_user += 1
-    if part2_answers_list[6] == 'C':
+    if part2_answers_list[6] == 'A':
         score_user += 1
 
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math and Reading Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        .problem {
+            margin-bottom: 15px;
+        }
+        .question {
+            font-weight: bold;
+        }
+    #conditionalContent { display: none; } /* Initially hide the content */
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var audio = document.getElementById('musicPlayer');
+            var conditionalContent = document.getElementById('conditionalContent');
+            var isAudioPlaying = false;
+
+            function playAudio() {
+                if (audio.paused) {
+                    audio.play()
+                        .then(() => {
+                            // Once audio starts playing, show the conditional content
+                            conditionalContent.style.display = 'block';
+                            var isAudioPlaying = false;
+                        })
+                        .catch(error => {
+                            console.error('Error attempting to play audio:', error);
+                        });
+                }
+            }
+
+            // Check if the page is being viewed
+            function handleVisibilityChange() {
+                if (document.hidden) {
+                    audio.pause();
+                } else if (isAudioPlaying) {
+                    audio.play();
+                }
+            }
+
+            // Event listener for page visibility change
+            document.addEventListener("visibilitychange", handleVisibilityChange, false);
+
+            // Optionally, if you want to ensure content is only visible when audio is actively playing
+            audio.addEventListener('play', function() {
+                conditionalContent.style.display = 'block';
+                isAudioPlaying = true;
+            });
+
+            audio.addEventListener('pause', function() {
+                conditionalContent.style.display = 'none';
+                isAudioPlaying = false;
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1> PRESS PLAY TO SOLVE QUESTIONS</h1>
+    Your preferred music genre is {{ music_genre }}
+    <audio id = "musicPlayer" controls autoplay>
+        {% if music_genre == "Instrumental" %}
+        <source src="/static/instrumental.mp3" type = "audio/mpeg">
+        {% elif music_genre == 'Classical' %}
+        <source src="/static/classical.mp3" type = "audio/mpeg">
+        {% elif music_genre == 'Electronic' %}
+        <source src="/static/electronic.mp3" type = "audio/mpeg">
+        {% elif music_genre == 'Pop' %}
+        <source src="/static/pop.mp3" type = "audio/mpeg">
+        {% endif %}
+    </audio>
+
+    <div id = "conditionalContent">
+    <h1>Problems</h1>
+    <form id="Problems", method="POST">
+    <div class="container">
+        <h2>Arithmetic Problems</h2>
+        <div class="problem">
+            <div class="question">1. Solve: 2 + 3 * (8 / 4)</div>
+            <input type="radio" id="a11" name="arithmetic1" value="A"><label for="a11">5</label><br>
+            <input type="radio" id="a12" name="arithmetic1" value="B"><label for="a12">8</label><br>
+            <input type="radio" id="a13" name="arithmetic1" value="C"><label for="a13">10</label><br>
+        </div>
+        <div class="problem">
+            <div class="question">2. Solve: (15 - 5) / 2</div>
+            <input type="radio" id="a21" name="arithmetic2" value="A"><label for="a21">5</label><br>
+            <input type="radio" id="a22" name="arithmetic2" value="B"><label for="a22">10</label><br>
+            <input type="radio" id="a23" name="arithmetic2" value="C"><label for="a23">7.5</label><br>
+        </div>
+        <div class="problem">
+            <div class="question">3. Solve: 4 * (6 + 9) / 3</div>
+            <input type="radio" id="a31" name="arithmetic3" value="A"><label for="a31">20</label><br>
+            <input type="radio" id="a32" name="arithmetic3" value="B"><label for="a32">18</label><br>
+            <input type="radio" id="a33" name="arithmetic3" value="C"><label for="a33">30</label><br>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Reading Comprehension Problems</h2>
+        <p>Mike and Morris lived in the same village. While Morris owned the largest jewelry shop in the village, Mike was a poor farmer. Both had large families with many sons, daughters-in-law and grandchildren. One fine day, Mike, tired of not being able to feed his family, decided to leave the village and move to the city where he was certain to earn enough to feed everyone. Along with his family, he left the village for the city. At night, they stopped under a large tree. There was a stream running nearby where they could freshen up themselves. He told his sons to clear the area below the tree, he told his wife to fetch water and he instructed his daughters-in-law to make up the fire and started cutting wood from the tree himself. They didn’t know that in the branches of the tree, there was a thief hiding. He watched as Mike’s family worked together and also noticed that they had nothing to cook. Mike’s wife also thought the same and asked her husband ” Everything is ready but what shall we eat?”. Mike raised his hands to heaven and said ” Don’t worry. He is watching all of this from above. He will help us.” The thief got worried as he had seen that the family was large and worked well together. Taking advantage of the fact that they did not know he was hiding in the branches, he decided to make a quick escape. He climbed down safely when they were not looking and ran for his life. But, he left behind the bundle of stolen jewels and money which dropped into Mike’s lap. Mike opened it and jumped with joy when he saw the contents. The family gathered all their belongings and returned to the village. There was great excitement when they told everyone how they got rich. Morris thought that the tree was miraculous and this was a nice and quick way to earn some money. He ordered his family to pack some clothes and they set off as if on a journey. They also stopped under the same tree and Morris started commanding everyone as Mike had done. But no one in his family was willing to obey his orders. Being a rich family, they were used to having servants all around. So, the one who went to the river to fetch water enjoyed a nice bath. The one who went to get wood for fire went off to sleep. Morris’s wife said ” Everything is ready but what shall we eat ?” Morris raised his hands and said, ” Don’t worry. He is watching all of this from above. He will help us.” As soon as he finished saying, the thief jumped down from the tree with a knife in hand. Seeing him, everyone started running around to save their lives. The thief stole everything they had and Morris and his family had to return to the village empty handed, having lost all their valuables that they had taken with them.   </p>
+        <div class="problem">
+            <div class="question">Question 1: Why did Mike and his family decide to rest under the thief’s tree? </div>
+            <input type="radio" id="r11" name="reading1" value="A"><label for="r11">A) Being a large family, they knew that they could easily defeat the thief </label><br>
+            <input type="radio" id="r12" name="reading1" value="B"><label for="r12">B) It was a convenient spot for taking a halt at night</label><br>
+            <input type="radio" id="r13" name="reading1" value="C"><label for="r13">C) There was a stream nearby and wood enough to build a house </label><br>
+        </div>
+        <div class="problem">
+            <div class="question">Question 2: Which of the following best describes Morris? </div>
+            <input type="radio" id="r21" name="reading2" value="A"><label for="r21">A) He was a rich businessman </label><br>
+            <input type="radio" id="r22" name="reading2" value="B"><label for="r22">B) He bullied his wife </label><br>
+            <input type="radio" id="r23" name="reading2" value="C"><label for="r23">C) He was greedy and imitated Mike </label><br>
+        </div>
+        <div class="problem">
+            <div class="question">Question 3: What did Mike mean when he said “He is watching all this from above”?  </div>
+            <input type="radio" id="r31" name="reading3" value="A"><label for="r31">A) He had spotted the thief and wanted to scare him </label><br>
+            <input type="radio" id="r32" name="reading3" value="B"><label for="r32">B) He was telling his wife to have faith in god </label><br>
+            <input type="radio" id="r33" name="reading3" value="C"><label for="r33">C) It was just a warning for his family members to stick together </label><br>
+        </div>
+        <div class="problem">
+            <div class="question">Question 4: Why did the thief return to the tree? </div>
+            <input type="radio" id="r41" name="reading4" value="A"><label for="r41">A) To wait for Mike to return </label><br>
+            <input type="radio" id="r42" name="reading4" value="B"><label for="r42">B) To set up a trap </label><br>
+            <input type="radio" id="r43" name="reading4" value="C"><label for="r43">C) Not mentioned in the passage </label><br>
+        </div>
+        <div class="problem">
+            <div class="question">Question 5: How did the fellow villagers react to Mike getting rich overnight? </div>
+            <input type="radio" id="r51" name="reading5" value="A"><label for="r51">A) They were jealous of him </label><br>
+            <input type="radio" id="r52" name="reading5" value="B"><label for="r52">B) They were very excited  </label><br>
+            <input type="radio" id="r53" name="reading5" value="C"><label for="r53">C) They followed his example </label><br>
+        </div>
+    </div>
+        <input type="submit" value="Next">
+    </form>
+    </div>
+</body>
+</html>

@@ -181,5 +181,8 @@ def close():
     conn.close()
     return render_template("thankyou.html", score_user = score_user)
 
+def main():
+    app.run(port = 10000)
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

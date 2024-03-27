@@ -6,6 +6,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Math and Reading Practice</title>
     <style>
         body {
@@ -69,6 +71,7 @@
     </script>
 </head>
 <body>
+
     <h1> PRESS PLAY TO SOLVE QUESTIONS</h1>
     Your preferred music genre is {{ music_genre }}
     <audio id = "musicPlayer" controls autoplay>
@@ -85,7 +88,7 @@
 
     <div id = "conditionalContent">
     <h1>Select the correct option</h1>
-    <form id="Problems", method="POST">
+    <form id="timerForm", method="POST">
     <div class="container">
         <h2>Arithmetic Problems</h2>
         <div class="problem">
@@ -147,5 +150,35 @@ Fortune slides down into self-indulgence; Labor moves upward and aspires to free
         <input type="submit" value="Next">
     </form>
     </div>
+
+<script>
+        var startTime = new Date().getTime();
+        var timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            var elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            timerElement.textContent = 'Timer: ' + elapsedTime + ' seconds';
+        }
+
+        setInterval(updateTimer, 1000);
+
+        $('#timerForm').submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var endTime = new Date().getTime();
+            var elapsedTime = Math.floor((endTime - startTime) / 1000);
+
+            // Append elapsed time as hidden input to the form
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'elapsed_time',
+                value: elapsedTime
+            }).appendTo('#timerForm');
+
+            // Submit the form
+            this.submit();
+        });
+    </script>
 </body>
 </html>

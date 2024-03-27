@@ -54,6 +54,8 @@ def music_preference():
     id_number = session.get('id_in_session')
     conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
+
+
     print("id of music_preference is", id_number)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
@@ -71,13 +73,16 @@ def music_preference():
         reading3 = data.get("reading3")
         reading4 = data.get("reading4")
         reading5 = data.get("reading5")
+        elapsed_time = data.get("elapsed_time")
 
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-        cur.execute("INSERT INTO part1_answers (id, ar1, ar2, ar3, r1, r2, r3, r4, r5) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);",
-                    (id_number, arithmetic1, arithmetic2, arithmetic3, reading1, reading2, reading3, reading4, reading5))
+        cur.execute("INSERT INTO part1_answers (id, ar1, ar2, ar3, r1, r2, r3, r4, r5, elapsed_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+                    (id_number, arithmetic1, arithmetic2, arithmetic3, reading1, reading2, reading3, reading4, reading5, elapsed_time))
         conn.commit()
         cur.close()
+
+        print ("elapsed_time is", elapsed_time)
 
         conn.close()
         return redirect(url_for('random_music'))
@@ -106,12 +111,13 @@ def random_music():
           reading8 = data.get("reading8")
           reading9 = data.get("reading9")
           reading10 = data.get("reading10")
+          elapsed_time = data.get("elapsed_time")
 
           conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
           cur=conn.cursor()
           cur.execute(
-              "INSERT INTO part2_answers (id, ar4, ar5, r6, r7, r8, r9, r10) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);",
-              (id_number, arithmetic4, arithmetic5, reading6, reading7, reading8, reading9, reading10))
+              "INSERT INTO part2_answers (id, ar4, ar5, r6, r7, r8, r9, r10, elapsed_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);",
+              (id_number, arithmetic4, arithmetic5, reading6, reading7, reading8, reading9, reading10, elapsed_time))
           conn.commit()
           cur.close()
           conn.close()
